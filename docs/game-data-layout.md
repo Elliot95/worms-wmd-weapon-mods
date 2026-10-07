@@ -5,16 +5,22 @@ Reconnaissance notes. Everything here was verified against a live install on
 
 ## Install
 
-Steam appid **327030**. Confirmed live install:
+Steam appid **327030**. The install is **5.37 GB** at:
 
 ```
-N:\SteamLibrary\steamapps\common\WormsWMD      5.37 GB
+<SteamLibrary>\steamapps\common\WormsWMD
 ```
 
-`appmanifest_327030.acf` sits in `N:\SteamLibrary\steamapps\`, `StateFlags 4`
-(fully installed). A second, orphaned copy previously existed under
-`C:\Program Files (x86)\Steam\...` - pre-move leftovers, last written
-2026-08-13, not read by the game. Removed.
+where `<SteamLibrary>` is any Steam library root, not necessarily the one beside
+Steam itself - check `steamapps\libraryfolders.vdf` for the list.
+`appmanifest_327030.acf` sits in that library's `steamapps\` with
+`StateFlags 4` (fully installed).
+
+Worth checking for orphans: if the game was ever moved between libraries,
+a partial copy can be left behind in the old one holding `CommonData/`,
+`WorkshopContent/` and `WorkshopLevels/`. It is not read by the game, and
+`WorkshopLevels` alone can be over a gigabyte. Compare timestamps against the
+library named in `libraryfolders.vdf` to tell which is live.
 
 ## Top-level directories
 

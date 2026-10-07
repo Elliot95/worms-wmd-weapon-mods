@@ -30,11 +30,27 @@ the game's on-disk data layout - see [`docs/game-data-layout.md`](docs/game-data
 
 ## Getting started
 
-The game itself is never committed. Point the tools at your install:
+Requires Python 3.10+. The game itself is never committed - point the tools
+at your own install.
+
+PowerShell:
+
+```powershell
+$env:WMD_INSTALL = "D:\SteamLibrary\steamapps\common\WormsWMD"
+python tools\probe.py
+```
+
+bash:
 
 ```bash
-export WMD_INSTALL="N:/SteamLibrary/steamapps/common/WormsWMD"
+export WMD_INSTALL="/d/SteamLibrary/steamapps/common/WormsWMD"
+python tools/probe.py
 ```
+
+If you do not know which library holds it, look for `appmanifest_327030.acf`
+under each root listed in `steamapps/libraryfolders.vdf`.
+
+`probe.py` prints each bundle's XOM section structure and class inventory.
 
 ## Legal
 
