@@ -100,3 +100,48 @@ author the combination, and no shipped banana variant that does it.
 Crafting. `PoisonedDynamite`, `StinkingCarpetBomb`, `BarbecuedSheep` and
 `SuperFlatulenceSheep` are obtainable in-game and already deliver
 explosive-plus-gas and animal-plus-fire behaviour.
+
+## Throwable? The crafted-variant block
+
+Enum indices **32-52** form a contiguous block of crafted variants, each
+pairing with a base weapon. The pairings below are **inferred** from naming and
+enum adjacency - the real recipe data lives in the encrypted `scripts.rpg`, so
+treat them as strong guesses, not verified facts.
+
+| Crafted variant | Base weapon | Delivery |
+|---|---|---|
+| `GasGrenade` (33) | Grenade | **thrown** |
+| `BazookaPie` (32) | Bazooka | fired |
+| `ClusterBombMk2` (34) | Cluster Bomb | thrown |
+| `DemonStrike` (36) | Air Strike | called in |
+| `PoisonedDynamite` (37) | Dynamite | **placed** |
+| `BarbecuedSheep` (38) | Sheep | walks |
+| `SuperFlatulenceSheep` (41) | Super Sheep | flies |
+| `StinkingCarpetBomb` (42) | Carpet Bomb | called in |
+| `SuperBananaBomb` (45) | Banana Bomb | thrown - but bigger only, no gas/fire |
+| `HolyMineGrenade` (47) | Holy Hand Grenade | thrown |
+
+Crafting is confirmed in the exe: `TurnsToCraft`, `IsAVariationOf`,
+`Dismantle`, `CraftingSlot%d`, `Com.MissingIngredients`, and four ingredients -
+Boggy's Special Sauce, Sticky Donkey Paste, Banana Bomb Seeds, Tears Of A Worm.
+
+### Throwable gas: yes
+
+`GasGrenade` (33) is a grenade variant, so it is thrown, and it leaves a gas
+cloud. Craftable in-game, no modding.
+
+### Throwable fire: does not exist
+
+Searched the exe for every plausible name - `Molotov`, `Napalm`, `Incendiary`,
+`FireGrenade`, `FlameGrenade`, `Firebomb`, `Petrol`, `Inferno` - **all zero
+hits.** Every fire payload in the game is non-throwable:
+
+| Payload | Delivery |
+|---|---|
+| `FlameThrower` (20) | sprayed |
+| `OilBarrel` (21) / `OilFire` (22) | map object / its fire |
+| `BarbecuedSheep` (38) | walks |
+| `W1RocketFire` (77) | rocket |
+| `StaticFlameThrower` (89) | emplacement |
+
+So a thrown incendiary has no in-game equivalent. It requires the binary patch.
