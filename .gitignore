@@ -1,0 +1,26 @@
+# Never commit game assets - copyrighted, and huge
+/game/
+*.bdl
+*.wad
+*.bkw
+*.ugc
+*.rpg
+
+# Build output
+/out/
+*.xom.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
