@@ -145,3 +145,54 @@ hits.** Every fire payload in the game is non-throwable:
 | `StaticFlameThrower` (89) | emplacement |
 
 So a thrown incendiary has no in-game equivalent. It requires the binary patch.
+
+## The binary route is closed: `.text` is DRM-encrypted
+
+Measured on the shipped exe:
+
+- PE32, **32-bit x86**, image base `0x400000`
+- Entry point RVA `0xf47f310`, which lands in a **`.bind`** section - the
+  SteamStub DRM wrapper
+- **`.text` entropy is 8.000 bits/byte.** Real x86 measures ~6.0-6.5.
+- Disassembling `.text` at four separate offsets yields noise - `bound esp`,
+  `retf 0xca5b`, `out dx, al`, random immediates. Not code.
+- `.rdata` **is** plaintext, which is why every string in this document could
+  be read.
+
+So the strings are legible but the code is not. Patching a payload constant
+would first require defeating SteamStub, i.e. DRM circumvention. **This project
+does not go there.** The binary route is closed on principle, not difficulty.
+
+## The art route: open, but it is real work
+
+`In-Game.bdl` is plaintext XOM, so weapon *art* is reachable.
+
+Confirmed assets:
+
+| Asset | Notes |
+|---|---|
+| `WE_BananaBomb_01.tga`, `_02.tga` | banana textures |
+| `WE_Grenade_01..04.tga`, `WE_GrenadePayload_01/02/04.tga` | grenade textures |
+| `BananaBomb_Banana`, `BananaBomb_Cape`, `BananaBomb_Chunk` + `*Shape` | banana meshes |
+
+### A correction worth recording
+
+`Poison_001_WE_Grenade_01` and `Fire_001_WE_Grenade_01` look at first like
+gas/fire *weapon skins*. They are not. They are **particle-effect materials** -
+they appear as `downjetShape1_Fire_001_WE_Grenade_01` next to `Fire_002.xom`
+and `Fire_003.xom`, and inside shader-uniform chains
+(`LifetimeScaler|LocalScaler|Poison_001_...`). The 192 `Poison_001_WE_*` names
+are the gas-cloud VFX, not a weapon variant.
+
+`GasGrenade` has **zero** art assets of its own.
+
+### What an art mod would and would not achieve
+
+- A **texture swap** (grenade texture -> banana texture) is the cheap version.
+  It yields a yellow grenade, not a banana - the silhouette is still a grenade.
+- A **mesh swap** is what actually reads as a banana, and is substantially
+  harder: it means rewriting object references inside a 73 MB XOM container.
+- Either needs an **XOM writer**, which does not exist yet. `tools/wmdmod/xom.py`
+  only reads structure.
+
+Steam's "verify integrity" reverts bundle edits too, so keep originals.
