@@ -1,0 +1,66 @@
+{
+  "_source": "Worms W.M.D.exe string table",
+  "_note": "Field names only. The VALUES are compiled into the binary; these strings are reflection/debug names, not an editable config.",
+  "groups": {
+    "Flame": [
+      "FlameBonus",
+      "FlameBurnPeriodFactor",
+      "FlameBurnRadius1",
+      "FlameBurnRadius2",
+      "FlameBurnRadius3",
+      "FlameBurnRadius4",
+      "FlameDmgDelaySecs_Max",
+      "FlameDmgDelaySecs_Min",
+      "FlameDriftVel_Max",
+      "FlameDriftVel_Min",
+      "FlameHarmlessPeriodSecs",
+      "FlameLifetimeSecs_Max",
+      "FlameLifetimeSecs_Min",
+      "FlameMan",
+      "FlameScore",
+      "FlameThrower",
+      "FlameThrowerPayload",
+      "FlameVelocityPushScale",
+      "Flames"
+    ],
+    "Poison": [
+      "PoisonDrag",
+      "PoisonEnemies",
+      "PoisonEnemiesCriterion",
+      "PoisonGrowthRateBase",
+      "PoisonGrowthRateVariance",
+      "PoisonLift",
+      "PoisonMaxRadius",
+      "PoisonMinRadius",
+      "PoisonOffsetFaceX",
+      "PoisonOffsetY",
+      "PoisonPayload",
+      "PoisonPoints",
+      "PoisonTriggerFuseTimeSecs",
+      "Poisoned",
+      "PoisonedDynamite",
+      "PoisonedDynamitePayload",
+      "PoisonedEnteredBuilding",
+      "PoisonedIdles"
+    ],
+    "Gas": [
+      "GasDelay",
+      "GasGrenade",
+      "GasGrenadePayload",
+      "GasR",
+      "GasSound"
+    ],
+    "Banana": [
+      "BananaBomb",
+      "BananaBombPayload",
+      "BananaBombSeeds",
+      "BananaFragment",
+      "BananaFragmentPayload",
+      "BananaSeed_01"
+    ],
+    "Turkey": [
+      "TurkeyBomb",
+      "TurkeyBombPayload"
+    ]
+  }
+}
